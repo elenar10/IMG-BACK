@@ -1,0 +1,26 @@
+{
+  "name": "img-back",
+  "version": "1.0.0",
+  "description": "1BBDD con MongoDB para almacenar las imágenes del gestor web app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elenar10/IMG-BACK.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elenar10/IMG-BACK/issues"
+  },
+  "homepage": "https://github.com/elenar10/IMG-BACK#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mongodb": "^4.4.1"
+  }
+}
