@@ -1,1 +1,0 @@
-export const urlBBDD = "mongodb+srv://R_dev100:NhaKQ3mD6mLZ04L2@cluster0.mxzxo.mongodb.net/IMG?retryWrites=true&w=majority"
