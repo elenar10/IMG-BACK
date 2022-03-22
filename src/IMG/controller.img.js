@@ -1,4 +1,4 @@
-import { retrieveAllImagesByEmail, findUserBySucessEmail, createFavorite } from "./model.img.js";
+import { retrieveAllImagesByEmail, findUserBySucessEmail, createFavorite, retrieveAllFavorites, retrieveOneFavoriteById } from "./model.img.js";
 
 
 
@@ -44,3 +44,36 @@ export async function setNewFavorite(req, res){
         res.sendStatus(401)
     }
 }
+/**TODOS LOS DOCUMENTOS DE FAVORITES
+ * @param {http request/response} 
+ * @return {Array de objetos} todos los documentos de la collection PRODUCTOS o bien mensaje de error.
+ */
+
+ export async function getAllFavorites(req, res){
+    const favoritesFound = await retrieveAllFavorites()
+ 
+    if(favoritesFound!==null){
+        console.log("hasta aquí", favoritesFound)
+        res.json(favoritesFound);
+        
+    }else{
+        res.sendStatus(404);
+    }
+  };
+
+
+  /** UN DOCUMENTO DE FAVORITES POR ID
+ * @param {http request/response} body de request es un string con el id
+ * @return {objeto} todo el documento de la collection PRODUCTOS o bien mensaje de error.
+ */
+
+ export async function getOneImageById(req, res){
+    console.log(req.params.id)
+   const favoriteFound = await retrieveOneFavoriteById(req.params.id)
+   if(favoriteFound!==null){
+       favoriteFound;
+       res.json([favoriteFound]);
+   }else{
+       res.sendStatus(404);
+   }
+};

@@ -6,6 +6,26 @@ const client = new MongoClient(URI);
 
 
 
+// TODOS LOS DOCUMENTOS DE UNA COLECCIÓN
+/**
+ * @return {Array de objetos} todos los documentos de la collection PRODUCTOS.
+ */
+ export async function retrieveAllFavorites(){
+  try{
+      await client.connect(); 
+      const db = client.db('IMG');
+      const allFavorites = db.collection('images'); 
+      const listFavorites = await allFavorites.find({}).toArray(); 
+      console.log(listFavorites)
+      return listFavorites
+  } catch (err){
+      console.log(err);
+  } finally {
+      await client.close();
+  }
+};
+
+
 // TODOS LOS DOCUMENTOS DE FAVORITES POR EMAIL
 /**
  * @return {Array de objetos} todos los documentos de la collection images.
@@ -101,3 +121,25 @@ export async function findUserBySucessEmail(email) {
 //         await client.close();
 //     }
 // }
+
+// UN DOCUMENTO POR  SU ID
+/**
+ * @param {string} propiedad name del documento a recuperar de la collection IMG.
+ * @return {promesa que cuando se resuelve objeto con su id} todos los documentos de la collection PRODUCTOS.
+ */
+
+ export async function retrieveOneFavoriteById(productId){
+    console.log(productId)
+    try{
+        await client.connect();
+        const db = client.db('IMG');
+        const allFavorites = db.collection('images');
+        const oneFavorite = await allFavorites.findOne({ _id: ObjectId(productId) });
+        return oneFavorite;
+
+    } catch (err){
+        console.log(err);
+    } finally {
+        await client.close();
+    }
+}
