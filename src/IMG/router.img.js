@@ -7,11 +7,11 @@ const router = express.Router();
 const storage = multer.diskStorage({ 
       destination:'images/',   
       filename:(req, file, cb) =>{
-            // const request = req.body;
-            // const imagenRequest = req.file;
-            // console.log('router entrando en diskStorage', request)
-            // console.log('en router diskStorage imagenRequest', imagenRequest )
-            // console.log('en router diskStorage imagenRequest', file.originalname )
+            const request = req.body;
+            const imagenRequest = req.file;
+            console.log('router entrando en diskStorage', request)
+            console.log('en router diskStorage imagenRequest', imagenRequest )
+            console.log('en router diskStorage imagenRequest', file.originalname )
     
           cb(null, file.originalname)
   }})

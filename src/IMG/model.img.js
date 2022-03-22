@@ -66,6 +66,7 @@ export async function findUserBySucessEmail(email) {
         const db = client.db('IMG');
         const collectionConected = db.collection('images');
         console.log('favorite en el model', favorite)
+        
         const favoriteInserted = await collectionConected.insertOne(favorite);  // insertOne devuelve el user o null si no lo puede meter
         console.log('el producto ha sido insertado en el model y devuelve:', favoriteInserted);
         return favoriteInserted

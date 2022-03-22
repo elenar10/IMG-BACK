@@ -26,15 +26,21 @@ import { retrieveAllImagesByEmail, findUserBySucessEmail, createFavorite } from 
  */
 
 export async function setNewFavorite(req, res){
-   
+    console.log('request en setNewFavorite', req)
     const userFound = await findUserBySucessEmail(req.body.email)
-    const {name, type, img, email} = req.body
-    const cleanRequest = {name, type, img, email}
-    if(userFound != null){
+
+    // const {name, type, imagen, email} = req.body
+    // const cleanRequest = {name, type, imagen, email}
+    const cleanRequest = req.body
+    console.log('cleanRequest', cleanRequest)
+    // if(userFound != null){ condición para cuando la app tenga registro y login
+    if(userFound === userFound){
         const favoriteCreated = await createFavorite(cleanRequest);
+        
         console.log("en setNewFavorite controller devuelve function", favoriteCreated)
+        
         res.json(favoriteCreated)
     }else{
-        res.sendStatus(409)
+        res.sendStatus(401)
     }
 }
