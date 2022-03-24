@@ -143,3 +143,28 @@ export async function findUserBySucessEmail(email) {
         await client.close();
     }
 }
+// BORRA UN DOCUMENTO POR  SU ID
+/**
+ * @param {string} ID del documento a BORRAR de la collection IMG.
+ * @return {promesa que cuando se resuelve objeto con su id} .
+ */
+
+ export async function deleteOneFavoriteById(productId){
+    console.log('datos del model', productId)
+    try{
+        await client.connect();
+        const db = client.db('IMG');
+        const allFavorites = db.collection('images');
+        const query = { _id: ObjectId(productId) }
+        console.log('esto pasamos', query)
+        const deletedFavorite = await allFavorites.findOneAndDelete(query);
+        
+        return deletedFavorite;
+
+    } catch (err){
+        console.log(err);
+    } finally {
+        await client.close();
+    }
+}
+

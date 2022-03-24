@@ -1,4 +1,4 @@
-import { retrieveAllImagesByEmail, findUserBySucessEmail, createFavorite, retrieveAllFavorites, retrieveOneFavoriteById } from "./model.img.js";
+import { deleteOneFavoriteById, retrieveAllImagesByEmail, findUserBySucessEmail, createFavorite, retrieveAllFavorites, retrieveOneFavoriteById } from "./model.img.js";
 
 
 
@@ -68,7 +68,7 @@ export async function setNewFavorite(req, res){
  */
 
  export async function getOneImageById(req, res){
-    console.log(req.params.id)
+    console.log('esta es la imagen', req.params.id)
    const favoriteFound = await retrieveOneFavoriteById(req.params.id)
    if(favoriteFound!==null){
        favoriteFound;
@@ -77,3 +77,22 @@ export async function setNewFavorite(req, res){
        res.sendStatus(404);
    }
 };
+
+
+  /** BORRA UN DOCUMENTO DE FAVORITES POR ID
+ * @param {http request/response} body de request es un string con el id
+ * @return {objeto} ok o bien mensaje de error.
+ */
+ export async function deleteOneFavorite(req, res){
+    console.log('esta es la imagen líena 87', req.body.id)
+    const productId = req.body.id
+    console.log('datos', productId)
+   const favoriteDeleted = await deleteOneFavoriteById(productId)
+   console.log('este es el favorito borrado', favoriteDeleted)
+   if(favoriteDeleted!==null){
+       res.json([favoriteDeleted]);
+   }else{
+       res.sendStatus(404);
+   }
+};
+
