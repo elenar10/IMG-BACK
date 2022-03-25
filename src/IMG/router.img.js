@@ -7,9 +7,6 @@ const router = express.Router();
 const storage = multer.diskStorage({ 
       destination:'images/',   
       filename:(req, file, cb) =>{
-            // const request = req.body;
-            // const imagenRequest = req.file;
-    
           cb(null, file.originalname)
   }})
 
@@ -17,9 +14,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({
       storage,
-      dest: 'public/images/', // dest es la ruta que multer dará a la carpeta donde se guardarán las imágenes. Multer la crea donde especifiquemos, pero si no le damos un destination además del dest nos las guardará como archivos temporales.
+      dest: 'public/images/', 
       // limits: {fileSize: 1000000} // esto sería 1MB
-      }).single('imagen'); // imagen es el name que le he dado al input de que carga la imagen 
+      }).single('imagen');
 
 
 

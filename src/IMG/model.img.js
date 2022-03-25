@@ -99,7 +99,7 @@ export async function findUserBySucessEmail(email) {
 
 
 
-// // ENCONTRAR UN DOCUMENTO POR NOMBRE
+// // ENCONTRAR UN DOCUMENTO POR NOMBRE para poner un buscador de imágenes por nombre o para organizar por carpetas
 // /**
 //  * @param {string} propiedad name del documento a recuperar de la collection PRODUCTOS.
 //  * @return {object} documento de la collection PRODUCTOS o null.
@@ -156,7 +156,7 @@ export async function findUserBySucessEmail(email) {
         const db = client.db('IMG');
         const allFavorites = db.collection('images');
         const query = { _id: ObjectId(productId) }
-        console.log('esto pasamos', query)
+     
         const deletedFavorite = await allFavorites.findOneAndDelete(query);
         
         return deletedFavorite;

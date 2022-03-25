@@ -13,4 +13,4 @@ app.use('/public', express.static('images')); // tenemos que indicar a express q
 
 
 app.use('/favorites', favoritesRouter);
- app.listen(PORT, ()=> console.log('servidor levantado en puerto: ', PORT ));
+ app.listen(PORT, ()=> console.log('servidor levantado en el puerto: ', PORT ));

@@ -62,7 +62,7 @@ export async function setNewFavorite(req, res){
   };
 
 
-  /** UN DOCUMENTO DE FAVORITES POR ID
+  /** RECUPERA UN DOCUMENTO DE FAVORITES POR ID
  * @param {http request/response} body de request es un string con el id
  * @return {objeto} todo el documento de la collection PRODUCTOS o bien mensaje de error.
  */
