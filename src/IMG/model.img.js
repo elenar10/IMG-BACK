@@ -1,8 +1,10 @@
 import {MongoClient, ObjectId} from 'mongodb';
+import dotenv from 'dotenv';
+dotenv.config();
+// import { urlBBDD } from '../../config/config.js';
 
-import { urlBBDD } from '../../config/config.js';
-
-const URI= urlBBDD;
+// const URI= urlBBDD;
+const URI= process.env.URLBBDD;
 
 
 const client = new MongoClient(URI);
