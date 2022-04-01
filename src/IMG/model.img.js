@@ -1,7 +1,10 @@
 import {MongoClient, ObjectId} from 'mongodb';
+
 import { urlBBDD } from '../../config/config.js';
 
 const URI= urlBBDD;
+
+
 const client = new MongoClient(URI);
 
 
