@@ -2,10 +2,11 @@ import express from 'express';
 import favoritesRouter from './src/IMG/router.img.js';
 import cors from 'cors';
 
-const PORT = 4030;
+// const PORT = 4030;
 
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
 
 app.use(cors());
 
@@ -13,4 +14,6 @@ app.use('/public', express.static('images')); // tenemos que indicar a express q
 
 
 app.use('/favorites', favoritesRouter);
+
+const PORT = process.env.PORT || 4030
  app.listen(PORT, ()=> console.log('servidor levantado en el puerto: ', PORT ));

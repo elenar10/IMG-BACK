@@ -1,4 +1,17 @@
 import { deleteOneFavoriteById, retrieveAllImagesByEmail, findUserBySucessEmail, createFavorite, retrieveAllFavorites, retrieveOneFavoriteById } from "./model.img.js";
+import cloudinary from 'cloudinary';
+import dotenv from 'dotenv';
+
+
+dotenv.config();
+
+// const secret = process.env.SECRET 
+
+cloudinary.v2.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
 
 
@@ -26,12 +39,21 @@ import { deleteOneFavoriteById, retrieveAllImagesByEmail, findUserBySucessEmail,
  */
 
 export async function setNewFavorite(req, res){
-
+const fileImage = req.file
+console.log('req.file es este', fileImage.path)
+console.log('req.file es este', cloudinaryConfig)
     // const userFound = await findUserBySucessEmail(req.body.email)
-
+  
+    const uploadedResponse = await cloudinaryConfig.v2.uploader.upload(fileImage.path, {folder: 'FAVOREDIT'});
+    console.log('uploadedResponse en controller', uploadedResponse)
+    const file ={
+        url: uploadedResponse.secure_url,
+        imgID: uploadedResponse.public_id
+    }
+    
     const {name, img, info, email} = req.body
-    const cleanRequest = {name, img, info, email}
-    const cleanRequest = req.body
+    const cleanRequest = {name, img, info, email, file}
+ 
     console.log('cleanRequest', cleanRequest)
     // if(userFound != null){ condición para cuando la app tenga registro y login
     if(cleanRequest.img && cleanRequest.name !== null || undefined){
@@ -44,6 +66,10 @@ export async function setNewFavorite(req, res){
         res.sendStatus(401)
     }
 }
+
+
+
+
 /**TODOS LOS DOCUMENTOS DE FAVORITES
  * @param {http request/response} 
  * @return {Array de objetos} todos los documentos de la collection PRODUCTOS o bien mensaje de error.
